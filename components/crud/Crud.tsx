@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { string } from "yup";
 import styles from "../../styles/Crud.module.css";
 
 export default Crud;
