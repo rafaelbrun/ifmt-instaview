@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         <Link href="/insta-api" passHref>
           <h2 className={styles.button}>Gerar chave de acesso</h2>
         </Link>
-        <Link href="/" passHref>
+        <Link href="/manage" passHref>
           <h2 className={styles.button}>Gerenciar</h2>
         </Link>
       </div>
