@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from "next/server";
 const instaUrl =
   "https://api.instagram.com/oauth/authorize" +
   "?client_id=1281631838991518" +
-  "&redirect_uri=https://localhost:3001/main/" +
+  "&redirect_uri=https://ifmt-instaview.vercel.app/main/" +
   "&scope=user_profile" +
   "&response_type=code";
 
