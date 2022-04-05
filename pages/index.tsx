@@ -4,18 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const [isGerenciarClicked, setIsGerenciarClicked] = useState(false);
   const router = useRouter();
+  const { signIn } = useAuth();
 
   const handleSubmit = (event: any) => {
     const loginForm = document.forms[0];
     const username = event.target.uname.value;
     const password = event.target.pass.value;
 
-    if (authenticate(username, password)) {
+    if (signIn(username, password)) {
       router.push("/manage");
     } else {
       alert("Credenciais inválidas");
@@ -23,16 +25,6 @@ const Home: NextPage = () => {
     }
 
     event.preventDefault();
-  };
-
-  const authenticate = (uname: string, pass: string): boolean => {
-    console.log(uname);
-    console.log(pass);
-
-    if (uname == "admin" && pass == "controle0122") {
-      return true;
-    }
-    return false;
   };
 
   return (
