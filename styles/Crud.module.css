@@ -1,0 +1,37 @@
+.manageTokenContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputText {
+  padding: .3rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputContainer label {
+    margin-top: 2rem;
+}
+
+.inputSubmit {
+    align-self: center;
+    margin: 1rem 0 2rem 0;
+    cursor: pointer;
+    width: 10rem;
+    font-size: 1rem;
+    background: #01d28e;
+    border: 1px solid #01d28e;
+    border-radius: 5px;
+    color: #fff;
+    padding: .5rem 1rem;
+}
+  
+.inputSubmit:hover {
+    background: #6cf0c2;
+    border-color: #6cf0c2;
+    transition: .2s;
+}
