@@ -12,6 +12,10 @@ const Home: NextPage = () => {
         <meta name="description" content="Aplicação de gerenciamento IFMT Insta View" />
         <link rel="icon" href="/assets/ifmt_logo.svg" />
       </Head>
+        <div className={styles.headerContainer}>
+          <h1 className={styles.headerTitle}>IFMT Insta View</h1>
+          <h3 className={styles.headerDescription}>Desenvolvido pela disciplina de Sistemas Embarcados 01/2022</h3>
+        </div>
       <div className={styles.main}>
         <Link href="/insta-api" passHref>
           <h2 className={styles.button}>Gerar chave de acesso</h2>
