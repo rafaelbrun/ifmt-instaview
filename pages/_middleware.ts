@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 const instaUrl =
   "https://api.instagram.com/oauth/authorize" +
@@ -7,7 +7,7 @@ const instaUrl =
   "&scope=user_profile,user_media" +
   "&response_type=code";
 
-export async function middleware(req: any, ev: any) {
+export async function middleware(req: any) {
   const { pathname } = req.nextUrl;
   if (pathname == "/insta-api") {
     return NextResponse.redirect(instaUrl);
