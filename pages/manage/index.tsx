@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Crud from "../../components/crud/Crud";
-import { useAuth } from "../../hooks/useAuth";
+import Crud from "../../src/components/crud/Crud";
+import { useAuth } from "../../src/hooks/useAuth";
 import styles from "../../styles/Manage.module.css";
 
 const Manage: NextPage = () => {

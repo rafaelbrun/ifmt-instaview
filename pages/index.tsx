@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../src/hooks/useAuth";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
