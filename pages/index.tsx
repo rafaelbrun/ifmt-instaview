@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import { useAuth } from "../src/hooks/useAuth";
 import styles from "../styles/Home.module.css";
 
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
           <h2 className={styles.button}>Gerenciar</h2>
         </div>
       </div>
-      {isGerenciarClicked ? (
+      {isGerenciarClicked && (
         <div className={styles.formContainer}>
           <form onSubmit={handleSubmit}>
             <div className={styles.inputContainer}>
@@ -81,9 +81,7 @@ const Home: NextPage = () => {
             </div>
           </form>
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) }
       <footer className={styles.footer}>
         <a
           href="https://ifmtcba.edupage.org/"

@@ -3,14 +3,12 @@ import { useRouter } from "next/router";
 import { BsFillFileEarmarkCheckFill } from "react-icons/bs";
 import styles from "../../styles/Main.module.css";
 
-const Main: NextPage = () => {
-  const router = useRouter();  
-  const accessToken = router.query.code as string;
-  console.log(accessToken);
-  
+const Main: NextPage = ({code}: any) => {
+  const accessToken = code;
+
   return (
     <div className={styles.container}>
-      <h4>Aqui está seu token de acesso</h4>
+      <h4>Aqui está seu token de acesso adsfsda</h4>
       <div className={styles.iconContainer}>
         <input readOnly className={styles.inputText} value={accessToken} />
         <div
@@ -27,4 +25,24 @@ const Main: NextPage = () => {
   );
 };
 
+export async function getServerSideProps(context: any) {
+  const { code } = context.query;
+  // const { app, database } = require('../../firebaseConfig');
+  // const{ collection, addDoc } = require('firebase/firestore');
+
+
+
+  // const dbInstance = collection(database, 'tokens');
+
+  //   addDoc(dbInstance, {
+  //       username: 'teste',
+  //       token: code
+  //   })
+
+  return {
+    props: {
+      code,
+    },
+  };
+}
 export default Main;

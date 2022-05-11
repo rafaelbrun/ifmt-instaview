@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "../../styles/Crud.module.css";
+import styles from "../../styles/Manage.module.css";
 
 export default Crud;
 

@@ -1,5 +1,6 @@
+import { useRouter } from "next/router";
 import { NextResponse } from "next/server";
-
+// https://ifmt-instaview.vercel.app
 const instaUrl =
   "https://api.instagram.com/oauth/authorize" +
   "?client_id=1281631838991518" +
@@ -9,6 +10,7 @@ const instaUrl =
 
 export async function middleware(req: any) {
   const { pathname } = req.nextUrl;
+
   if (pathname == "/insta-api") {
     return NextResponse.redirect(instaUrl);
   }
