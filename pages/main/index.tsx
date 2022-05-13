@@ -27,6 +27,51 @@ const Main: NextPage = ({code}: any) => {
 
 export async function getServerSideProps(context: any) {
   const { code } = context.query;
+  const axios = require('axios');
+
+  
+  const FormData = require('form-data');
+  const form = new FormData();
+  form.append('client_id', 1281631838991518)
+  form.append('code', code );
+  form.append('client_secret', '406c81da7ddf02a38b192ecec5a11a29');
+  form.append('redirect_uri', 'https://ifmt-instaview.vercel.app/main/');
+  form.append('grant_type', 'authorization_code' );
+  // form.append('Content-Type', 'application/x-www-form-urlencoded')
+
+  axios.post( 'http://api.instagram.com/oauth/access_token', {
+    data: form,
+    headers: form.getHeaders()
+
+  }
+  ).then(function (response: any) {
+    console.log(response.data.form);
+  }).catch(function (error: any) {
+    console.log(error);
+  });
+
+
+
+//   console.log(form);
+  
+
+//   const http = require('http');
+
+// const request = http.request({
+//   method: 'post',
+//   host: 'http://api.instagram.com',
+//   path: '/oauth/access_token',
+//   headers: form.getHeaders()
+// });
+
+// form.pipe(request);
+
+// request.on('response', function(res: any) {
+//   console.log(res.statusCode);
+// });
+
+
+
   // const { app, database } = require('../../firebaseConfig');
   // const{ collection, addDoc } = require('firebase/firestore');
 
