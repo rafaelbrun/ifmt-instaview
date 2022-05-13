@@ -52,7 +52,7 @@ export async function getServerSideProps(context : any) {
       params.append('code', code);
 
       const response = await axios.post('https://api.instagram.com/oauth/access_token', params);
-      console.log(response.data);
+      // console.log(response.data);
       return response;
 
     } catch (e) {
@@ -61,6 +61,12 @@ export async function getServerSideProps(context : any) {
   }
 
   const responseData = await getUserTokenByCode();
+
+  const longDurationToken =  await axios.get(`https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=406c81da7ddf02a38b192ecec5a11a29&access_token=${responseData?.data.access_token}`)
+ 
+  // console.log(longDurationToken.data);
+
+
 
   // const { app, database } = require('../../firebaseConfig');
   // const{ collection, addDoc } = require('firebase/firestore');
@@ -74,7 +80,8 @@ export async function getServerSideProps(context : any) {
 
   return {
     props: {
-      accessToken: responseData? responseData.data.access_token : 'O código de autorização foi usado! Tente novamente.'
+      // accessToken: responseData? responseData.data.access_token : 'O código de autorização foi usado! Tente novamente.'
+      accessToken: longDurationToken? longDurationToken.data.access_token : 'O código de autorização foi usado! Tente novamente.'
     }};
 }
 export default Main;
