@@ -35,7 +35,7 @@ const Main: NextPage = ({ accessToken, users }: any) => {
   );
 };
 
-export async function getServerSideProps(context: any) {
+export async function getStaticProps(context: any) {
   const { code } = context.query;
 
   const axios = require("axios");
@@ -68,7 +68,7 @@ export async function getServerSideProps(context: any) {
       `&access_token=${responseData?.data.access_token}`
   );
 
-  // const username = await axios.get(`https://graph.instagram.com/me?fields=username&access_token=longDurationToken?.data.access_token}`)
+  // const username = await axios.get(`https://graph.instagram.com/me?fields=id,username&access_token=longDurationToken?.data.access_token}`)
 
   // const FiftyNineDaysFromNow = new Date(new Date().setDate(new Date().getDate() + 59)).toLocaleDateString();
   
