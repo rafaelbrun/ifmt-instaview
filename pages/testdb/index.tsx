@@ -27,7 +27,7 @@ export async function getServerSideProps(context: any) {
     const user = await createUser({
       username: 'stevejobs',
       token: '666666666666',
-      expiration_date: '2021-12-31'
+      expiration_date: new Date(new Date().setDate(new Date().getDate() + 59)).toLocaleDateString()
     });
     return user;
   }
