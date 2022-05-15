@@ -68,7 +68,7 @@ export async function getServerSideProps(context: any) {
       `&access_token=${responseData?.data.access_token}`
   );
 
-  const username = await axios.get(`https://graph.instagram.com/me?fields=username&access_token=longDurationToken?.data.access_token}`)
+  // const username = await axios.get(`https://graph.instagram.com/me?fields=username&access_token=longDurationToken?.data.access_token}`)
 
   // const FiftyNineDaysFromNow = new Date(new Date().setDate(new Date().getDate() + 59)).toLocaleDateString();
   
