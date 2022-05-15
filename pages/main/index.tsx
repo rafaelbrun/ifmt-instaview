@@ -70,26 +70,26 @@ export async function getServerSideProps(context: any) {
 
   const username = await axios.get(`https://graph.instagram.com/me?fields=username&access_token=longDurationToken?.data.access_token}`)
 
-  const FiftyNineDaysFromNow = new Date(new Date().setDate(new Date().getDate() + 59)).toLocaleDateString();
+  // const FiftyNineDaysFromNow = new Date(new Date().setDate(new Date().getDate() + 59)).toLocaleDateString();
   
-  const createNewUser =  async () => {
-    const user = await createUser({
-      username: username?.data.username,
-      token: longDurationToken?.data.access_token,
-      expiration_date:  FiftyNineDaysFromNow
-    });
-    return user;
-  }
+  // const createNewUser =  async () => {
+  //   const user = await createUser({
+  //     username: username?.data.username,
+  //     token: longDurationToken?.data.access_token,
+  //     expiration_date:  FiftyNineDaysFromNow
+  //   });
+  //   return user;
+  // }
 
-  await createNewUser();
-  const users = await getUsers(); 
+  // await createNewUser();
+  // const users = await getUsers(); 
 
   return {
     props: {
       accessToken: longDurationToken
         ? longDurationToken.data.access_token
         : "O código de autorização foi usado! Tente novamente.",
-      users,
+      // users,
     },
   };
 }
