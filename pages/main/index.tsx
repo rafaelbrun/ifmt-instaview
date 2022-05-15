@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { BsFillFileEarmarkCheckFill } from "react-icons/bs";
 import { CONSTANTS } from "../../src/constants";
 import styles from "../../styles/Main.module.css";
+import clientPromise from "../../mongodb";
 
 const Main: NextPage = ({ accessToken }: any) => {
   return (
@@ -55,6 +56,7 @@ export async function getServerSideProps(context: any) {
       `&client_secret=${CONSTANTS.ClientSecret}` +
       `&access_token=${responseData?.data.access_token}`
   );
+
 
   return {
     props: {
