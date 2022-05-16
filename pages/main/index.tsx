@@ -2,8 +2,7 @@ import type { NextPage } from "next";
 import { BsFillFileEarmarkCheckFill } from "react-icons/bs";
 import { CONSTANTS } from "../../src/constants";
 import styles from "../../styles/Main.module.css";
-
-// import { createUser, getUsers } from "../../utils/users";
+import { createUser, getUsers } from "../../utils/users";
 
 
 const Main: NextPage = ({ accessToken, users }: any) => {
@@ -39,13 +38,13 @@ const Main: NextPage = ({ accessToken, users }: any) => {
 export async function getServerSideProps(context: any) {
   const { code } = context.query;
 
-  const axios = require('axios');
+  const axios = require("axios");
 
   async function getUserTokenByCode() {
     try {
       const params = new URLSearchParams({ foo: "bar" });
       params.append("extraparam", "value");
-      params.append("client_id", CONSTANTS.ClientId.toString());
+      params.append("client_id", `${CONSTANTS.ClientId}`);
       params.append("client_secret", CONSTANTS.ClientSecret);
       params.append("redirect_uri", CONSTANTS.RedirectUri);
       params.append("grant_type", "authorization_code");
@@ -62,7 +61,12 @@ export async function getServerSideProps(context: any) {
 
   const responseData = await getUserTokenByCode();
 
-  const longDurationToken = await axios.get(`https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=${CONSTANTS.ClientSecret}&access_token=${responseData?.data.access_token}`);
+  const longDurationToken = await axios.get(
+    "https://graph.instagram.com/access_token" +
+      "?grant_type=ig_exchange_token" +
+      `&client_secret=${CONSTANTS.ClientSecret}` +
+      `&access_token=${responseData?.data.access_token}`
+  );
 
   // const username = await axios.get(`https://graph.instagram.com/me?fields=id,username&access_token=longDurationToken?.data.access_token}`)
 
