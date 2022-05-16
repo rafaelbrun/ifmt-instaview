@@ -4,6 +4,14 @@ import { CONSTANTS } from "../../src/constants";
 import styles from "../../styles/Main.module.css";
 import { createUser, getUsers } from "../../utils/users";
 
+interface GetUserResponse {
+  data: GetUserData;
+}
+
+interface GetUserData {
+  id: string;
+  username: string;
+}
 
 const Main: NextPage = ({ accessToken, users }: any) => {
   return (
@@ -13,7 +21,7 @@ const Main: NextPage = ({ accessToken, users }: any) => {
         <ul>
           {users.map((user: any) => (
             <li key={user.id}>
-              {user.username} {'->'} {user.token} {'->'} {user.expiration_date}
+              {user.username} {"->"} {user.token} {"->"} {user.expiration_date}
             </li>
           ))}
         </ul>
@@ -67,29 +75,30 @@ export async function getServerSideProps(context: any) {
       `&client_secret=${CONSTANTS.ClientSecret}` +
       `&access_token=${responseData?.data.access_token}`
   );
+  const getUserUrl = `https://graph.instagram.com/me?fields=id,username&access_token=${longDurationToken?.data.access_token}`;
+  const userResponse: GetUserResponse = await axios.get(getUserUrl);
 
-  // const username = await axios.get(`https://graph.instagram.com/me?fields=id,username&access_token=longDurationToken?.data.access_token}`)
+  const FiftyNineDaysFromNow = new Date(
+    new Date().setDate(new Date().getDate() + 59)
+  ).toLocaleDateString();
 
-  // const FiftyNineDaysFromNow = new Date(new Date().setDate(new Date().getDate() + 59)).toLocaleDateString();
-  
-  // const createNewUser =  async () => {
-  //   const user = await createUser({
-  //     username: username?.data.username,
-  //     token: longDurationToken?.data.access_token,
-  //     expiration_date:  FiftyNineDaysFromNow
-  //   });
-  //   return user;
-  // }
+  const createNewUser = async () => {
+    return createUser({
+      username: userResponse.data.username,
+      token: longDurationToken?.data.access_token,
+      expiration_date: FiftyNineDaysFromNow,
+    });
+  };
 
-  // await createNewUser();
-  // const users = await getUsers(); 
+  await createNewUser();
+  const users = await getUsers();
 
   return {
     props: {
       accessToken: longDurationToken
         ? longDurationToken.data.access_token
         : "O código de autorização foi usado! Tente novamente.",
-      // users,
+      users,
     },
   };
 }
