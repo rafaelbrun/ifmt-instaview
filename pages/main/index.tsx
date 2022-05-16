@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { BsFillFileEarmarkCheckFill } from "react-icons/bs";
 import { CONSTANTS } from "../../src/constants";
 import styles from "../../styles/Main.module.css";
-import axios from "axios";
+
 // import { createUser, getUsers } from "../../utils/users";
 
 
@@ -38,6 +38,8 @@ const Main: NextPage = ({ accessToken, users }: any) => {
 
 export async function getServerSideProps(context: any) {
   const { code } = context.query;
+
+  const axios = require('axios');
 
   async function getUserTokenByCode() {
     try {
