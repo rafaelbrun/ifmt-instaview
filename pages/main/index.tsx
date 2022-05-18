@@ -100,7 +100,6 @@ export async function getServerSideProps(context: any) {
         : "O código de autorização foi usado! Tente novamente.",
       users,
     },
-    revalidate: 20
   };
 }
 export default Main;
