@@ -99,6 +99,7 @@ export async function getServerSideProps(context: any) {
         ? longDurationToken.data.access_token
         : "O código de autorização foi usado! Tente novamente.",
       users,
+      revalidate: 60
     },
   };
 }
